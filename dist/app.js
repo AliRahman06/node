@@ -3,22 +3,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const path_1 = require("path");
+const dotenv_1 = require("dotenv");
+dotenv_1.config({ path: path_1.resolve(__dirname, '../.env') });
 const http_errors_1 = __importDefault(require("http-errors"));
 const express_1 = __importDefault(require("express"));
-const path_1 = __importDefault(require("path"));
+const path_2 = __importDefault(require("path"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const morgan_1 = __importDefault(require("morgan"));
 const index_1 = __importDefault(require("./routes/index"));
 const users_1 = __importDefault(require("./routes/users"));
 const app = express_1.default();
 // view engine setup
-app.set('views', path_1.default.join(__dirname, 'views'));
+app.set('views', path_2.default.join(__dirname, 'views'));
 app.set('view engine', 'twig');
 app.use(morgan_1.default('dev'));
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(cookie_parser_1.default());
-app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
+app.use(express_1.default.static(path_2.default.join(__dirname, 'public')));
 app.use('/', index_1.default);
 app.use('/users', users_1.default);
 // catch 404 and forward to error handler

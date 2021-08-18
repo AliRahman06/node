@@ -1,3 +1,7 @@
+import { resolve } from 'path'
+import { config } from 'dotenv'
+config ({ path: resolve(__dirname, '../.env') })
+
 import createError, { HttpError } from 'http-errors';
 import express, { NextFunction, Request, Response } from 'express';
 import path from 'path';
